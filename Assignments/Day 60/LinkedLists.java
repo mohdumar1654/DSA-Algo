@@ -33,16 +33,23 @@ class LinkedList {
         int indexAt = 0;
         Node current = head;
         Node newNode = new Node(data);
-        while (current != null) {
-            if (indexAt == (index - 1)) {
-                Node nodeAfter = current.next;
-                current.next = newNode;
-                newNode.next = nodeAfter;
-                // break;
+        if (index == 0) { // Insert new element at 0 index
+            Node tempHead = head;
+            head = newNode;
+            head.next = tempHead;
+        } else if (index > 0) {
+            while (current != null) {
+                if (indexAt == (index - 1)) {
+                    Node nodeAfter = current.next;
+                    current.next = newNode;
+                    newNode.next = nodeAfter;
+                    // break;
+                }
+                current = current.next;
+                indexAt = indexAt + 1;
             }
-            current = current.next;
-            indexAt = indexAt + 1;
         }
+
     }
 
     public void delete(int data) {
@@ -66,7 +73,7 @@ class LinkedList {
     }
 }
 
-public class LinkedLists {
+public class LL {
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
 
@@ -77,8 +84,11 @@ public class LinkedLists {
         list.add(5);
         list.add(6);
         list.addAtIndex(4, 3);
-        list.delete(2);
-
+        list.addAtIndex(9, 0);
+        // list.printNodes();
+        // System.out.println("After Deleting");
+        // list.delete(2);
+        //
         // Print all the nodes in the linked list
         list.printNodes();
     }
