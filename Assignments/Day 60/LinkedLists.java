@@ -64,6 +64,20 @@ class LinkedList {
         }
     }
 
+    public void deleteAtIndex(int index) {
+        Node current = head;
+        int indexAt = 0;
+        while (current != null) {
+            if ((indexAt + 1) == index) {
+                current.next = current.next.next; // Skip the node to be deleted by connecting the current node to the
+                                                  // next one
+                break;
+            }
+            current = current.next;
+            indexAt++;
+        }
+    }
+
     public void printNodes() {
         Node current = head;
         while (current != null) {
@@ -78,16 +92,23 @@ public class LL {
         LinkedList list = new LinkedList();
 
         // Add elements to the linked list
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(5);
+        list.add(8);
+        list.add(7);
+        list.add(7);
         list.add(6);
-        list.addAtIndex(4, 3);
-        list.addAtIndex(9, 0);
+        list.add(6);
+        list.add(3);
+        list.add(1);
+        list.add(5);
+        list.add(7);
+        // list.addAtIndex(5, 9);
+        // list.addAtIndex(9, 0);
         // list.printNodes();
         // System.out.println("After Deleting");
-        // list.delete(2);
+        // list.delete(5);
+        list.printNodes();
+        System.out.println("After Deleting");
+        list.deleteAtIndex(6);
         //
         // Print all the nodes in the linked list
         list.printNodes();
